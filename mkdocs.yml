@@ -1,0 +1,22 @@
+site_name: SecretKit
+repo_url: https://github.com/WenxueWu0216/SecretKit
+theme:
+  name: material
+  features:
+    - content.code.copy
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Auth flows: auth-flows.md
+  - Error handling: error-handling.md
+  - SDK usage: sdk-usage.md
+  - Design: design.md
+  - Benchmarks: benchmarks.md
+markdown_extensions:
+  - admonition
+  - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
