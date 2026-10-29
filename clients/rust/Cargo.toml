@@ -1,0 +1,13 @@
+[package]
+name = "secretkit-client"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+description = "Rust client for the SecretKit API (token-based get/list)"
+publish = false
+
+[dependencies]
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
