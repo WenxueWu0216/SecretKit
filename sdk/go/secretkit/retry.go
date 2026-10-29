@@ -40,7 +40,7 @@ func (d *retryingDoer) Do(req *http.Request) (*http.Response, error) {
 		delay := d.backoff(attempt, resp)
 		if resp != nil {
 			_, _ = io.Copy(io.Discard, io.LimitReader(resp.Body, 64<<10))
-			resp.Body.Close()
+			_ = resp.Body.Close()
 		}
 		if err := d.sleep(req.Context(), delay); err != nil {
 			return nil, err
@@ -94,7 +94,7 @@ func (d *retryingDoer) backoff(attempt int, resp *http.Response) time.Duration {
 		delay = d.policy.MaxDelay
 	}
 	// Up to 20% jitter so concurrent clients do not retry in lockstep.
-	jitter := time.Duration(rand.Int64N(int64(delay)/5 + 1))
+	jitter := time.Duration(rand.Int64N(int64(delay)/5 + 1)) //nolint:gosec // jitter needs no cryptographic randomness
 	return delay + jitter
 }
 

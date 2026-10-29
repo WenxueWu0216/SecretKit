@@ -87,7 +87,7 @@ func (h *specHarness) do(method, path, token, contentType string, body []byte) r
 	if err != nil {
 		h.t.Fatal(err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	raw, _ := io.ReadAll(resp.Body)
 
 	respInput := &openapi3filter.ResponseValidationInput{
