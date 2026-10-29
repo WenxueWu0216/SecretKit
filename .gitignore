@@ -1,0 +1,6 @@
+/bin/
+/dist/
+/site/
+clients/rust/target/
+*.test
+*.out
